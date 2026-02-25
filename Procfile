@@ -1,1 +1,1 @@
-web: gunicorn ProjetoDjango.wsgi
+web: gunicorn --pythonpath ProjetoDjango ProjetoDjango.wsgi
