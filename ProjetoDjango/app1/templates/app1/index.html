@@ -1,0 +1,34 @@
+{% extends 'app1/base.html' %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>Estoque de Produtos</h2>
+    <span class="badge bg-primary fs-6">{{ produtos|length }} itens</span>
+</div>
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    {% for produto in produtos %}
+    <div class="col">
+        <div class="card h-100 shadow-sm">
+            {% if produto.imagem %}
+                <img src="{{ produto.imagem.url }}" class="card-img-top" alt="{{ produto.nome }}" style="height: 200px; object-fit: cover;">
+            {% else %}
+                <img src="https://via.placeholder.com/200" class="card-img-top" alt="Sem imagem">
+            {% endif %}
+
+            <div class="card-body">
+                <h5 class="card-title text-uppercase">{{ produto.nome }}</h5>
+                <p class="card-text text-success fw-bold fs-4">R$ {{ produto.preco }}</p>
+                <p class="text-muted small">ID: #00{{ produto.id }}</p>
+            </div>
+            
+            <div class="card-footer bg-transparent border-top-0">
+                <button class="btn btn-outline-dark btn-sm w-100">Ver Detalhes</button>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <div class="alert alert-warning w-100">Nenhum produto cadastrado no estoque.</div>
+    {% endfor %}
+</div>
+{% endblock %}
